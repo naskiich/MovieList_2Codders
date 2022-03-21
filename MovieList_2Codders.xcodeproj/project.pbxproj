@@ -14,7 +14,11 @@
 		7E75786927E35E59009E2A63 /* MovieList_2CoddersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75786827E35E59009E2A63 /* MovieList_2CoddersTests.swift */; };
 		7E75787327E35E59009E2A63 /* MovieList_2CoddersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75787227E35E59009E2A63 /* MovieList_2CoddersUITests.swift */; };
 		7E75787527E35E5A009E2A63 /* MovieList_2CoddersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75787427E35E5A009E2A63 /* MovieList_2CoddersUITestsLaunchTests.swift */; };
-		7E75788727E4EE44009E2A63 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75788627E4EE44009E2A63 /* Response.swift */; };
+		7E75788E27E649AD009E2A63 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75788D27E649AD009E2A63 /* Model.swift */; };
+		7E75789627E75128009E2A63 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75789527E75128009E2A63 /* Extensions.swift */; };
+		7E75789927E75919009E2A63 /* MovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75789827E75919009E2A63 /* MovieNetwork.swift */; };
+		7E75789B27E75B22009E2A63 /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E75789A27E75B22009E2A63 /* URL+Helpers.swift */; };
+		7E7578A527E78CCC009E2A63 /* ListMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7578A427E78CCC009E2A63 /* ListMovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +50,11 @@
 		7E75786E27E35E59009E2A63 /* MovieList_2CoddersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieList_2CoddersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E75787227E35E59009E2A63 /* MovieList_2CoddersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList_2CoddersUITests.swift; sourceTree = "<group>"; };
 		7E75787427E35E5A009E2A63 /* MovieList_2CoddersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList_2CoddersUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7E75788627E4EE44009E2A63 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		7E75788D27E649AD009E2A63 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		7E75789527E75128009E2A63 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7E75789827E75919009E2A63 /* MovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetwork.swift; sourceTree = "<group>"; };
+		7E75789A27E75B22009E2A63 /* URL+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
+		7E7578A427E78CCC009E2A63 /* ListMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,14 +105,13 @@
 		7E75785027E35E52009E2A63 /* MovieList_2Codders */ = {
 			isa = PBXGroup;
 			children = (
-				7E75788527E3624E009E2A63 /* ViewModels */,
-				7E75788427E361F7009E2A63 /* utils */,
+				7E75789127E64A37009E2A63 /* View */,
+				7E75788C27E64984009E2A63 /* Model */,
 				7E75788327E361E2009E2A63 /* Controllers */,
-				7E75788227E361D2009E2A63 /* Data */,
-				7E75788127E361C9009E2A63 /* Cells */,
+				7E75789727E758F9009E2A63 /* Networking */,
+				7E75789427E75116009E2A63 /* Helpers */,
 				7E75785127E35E52009E2A63 /* AppDelegate.swift */,
 				7E75785327E35E52009E2A63 /* SceneDelegate.swift */,
-				7E75785527E35E52009E2A63 /* ViewController.swift */,
 				7E75785A27E35E58009E2A63 /* Assets.xcassets */,
 				7E75785F27E35E59009E2A63 /* Info.plist */,
 			);
@@ -128,40 +135,45 @@
 			path = MovieList_2CoddersUITests;
 			sourceTree = "<group>";
 		};
-		7E75788127E361C9009E2A63 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7E75788227E361D2009E2A63 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				7E75788627E4EE44009E2A63 /* Response.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		7E75788327E361E2009E2A63 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E75785527E35E52009E2A63 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7E75788427E361F7009E2A63 /* utils */ = {
+		7E75788C27E64984009E2A63 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E75788D27E649AD009E2A63 /* Model.swift */,
 			);
-			path = utils;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		7E75788527E3624E009E2A63 /* ViewModels */ = {
+		7E75789127E64A37009E2A63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E7578A427E78CCC009E2A63 /* ListMovieCollectionViewCell.swift */,
 			);
-			path = ViewModels;
+			path = View;
+			sourceTree = "<group>";
+		};
+		7E75789427E75116009E2A63 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7E75789527E75128009E2A63 /* Extensions.swift */,
+				7E75789A27E75B22009E2A63 /* URL+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		7E75789727E758F9009E2A63 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7E75789827E75919009E2A63 /* MovieNetwork.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,9 +305,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E75788727E4EE44009E2A63 /* Response.swift in Sources */,
+				7E75788E27E649AD009E2A63 /* Model.swift in Sources */,
+				7E75789627E75128009E2A63 /* Extensions.swift in Sources */,
+				7E75789927E75919009E2A63 /* MovieNetwork.swift in Sources */,
 				7E75785627E35E52009E2A63 /* ViewController.swift in Sources */,
 				7E75785227E35E52009E2A63 /* AppDelegate.swift in Sources */,
+				7E7578A527E78CCC009E2A63 /* ListMovieCollectionViewCell.swift in Sources */,
+				7E75789B27E75B22009E2A63 /* URL+Helpers.swift in Sources */,
 				7E75785427E35E52009E2A63 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
