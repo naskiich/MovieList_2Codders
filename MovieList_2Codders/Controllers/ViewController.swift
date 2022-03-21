@@ -9,9 +9,9 @@ import UIKit
 
 class ListMoviesViewController: UIViewController {
 
-    
-    var movies: [MoviesData] = []
+     
     private var viewModel = MovieViewModel()
+    var fetchingMore = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +19,7 @@ class ListMoviesViewController: UIViewController {
         addConstraintsToCollectionView()
         setCollectionViewDellegates()
         collectionView.register(ListMovieCollectionViewCell.self, forCellWithReuseIdentifier: ListMovieCollectionViewCell.identifier)
+        self.navigationItem.title = "Your Title"
 
     }
     
@@ -44,7 +45,7 @@ class ListMoviesViewController: UIViewController {
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-
+    
 }
 
 extension ListMoviesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
@@ -52,13 +53,9 @@ extension ListMoviesViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListMovieCollectionViewCell.identifier, for: indexPath) as! ListMovieCollectionViewCell
-
-//
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
         cell.configure(action: movie)
-        
         //cell.configure(action: movies[indexPath.row])
-        cell.layer.cornerRadius = 10.0
         return cell
     }
 
@@ -66,11 +63,21 @@ extension ListMoviesViewController: UICollectionViewDataSource, UICollectionView
         
         return viewModel.numberOfRowsInSection(section: section)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //let item = movies[indexPath.row]
+        
+        //print("You selected cell 123#\(item)!")
+        let rootVc = MovieDetailsViewController()
+        let vc = UINavigationController(rootViewController: rootVc)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+   }
 
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width)-10
-        let height: CGFloat = 100
+        let height: CGFloat = 130
         return CGSize(width: width, height: height)
     }
 }
