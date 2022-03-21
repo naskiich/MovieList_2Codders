@@ -47,6 +47,7 @@ struct MovieNetworkHelper {
                 // Parse the data
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode(MoviesData.self, from: data)
+                print(jsonData)
                 
                 // Back to the main thread
                 DispatchQueue.main.async {

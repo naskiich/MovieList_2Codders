@@ -11,21 +11,23 @@ class ListMoviesViewController: UIViewController {
 
     
     var movies: [MoviesData] = []
+    private var viewModel = MovieViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor.blue
-        collectionView.backgroundColor = UIColor.lightGray
         view.addSubview(collectionView)
         addConstraintsToCollectionView()
-
-        title = "Movie List"
-        navigationController?.navigationBar.isTranslucent = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        setCollectionViewDellegates()
         collectionView.register(ListMovieCollectionViewCell.self, forCellWithReuseIdentifier: ListMovieCollectionViewCell.identifier)
 
+    }
+    
+    func setCollectionViewDellegates() {
+        viewModel.fetchPopularMoviesData { [weak self] in
+            self?.collectionView.dataSource = self
+            self?.collectionView.delegate = self
+            self?.collectionView.reloadData()
+        }
     }
 
     let collectionView: UICollectionView = {
@@ -51,14 +53,18 @@ extension ListMoviesViewController: UICollectionViewDataSource, UICollectionView
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListMovieCollectionViewCell.identifier, for: indexPath) as! ListMovieCollectionViewCell
 
-//        cell.configure(action: movies[indexPath.row])
+//
+        let movie = viewModel.cellForRowAt(indexPath: indexPath)
+        cell.configure(action: movie)
+        
+        //cell.configure(action: movies[indexPath.row])
         cell.layer.cornerRadius = 10.0
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
+        return viewModel.numberOfRowsInSection(section: section)
     }
 
 

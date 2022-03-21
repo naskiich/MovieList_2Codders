@@ -12,7 +12,7 @@ class ListMovieCollectionViewCell: UICollectionViewCell {
 
         static let identifier = "ListMovieCollectionViewCell"
         
-        let movieImage: UIImageView = {
+        let movieImage: UIImageView! = {
             let image = UIImageView()
             image.layer.cornerRadius = 5.0
             image.contentMode = .scaleAspectFill
@@ -81,6 +81,26 @@ class ListMovieCollectionViewCell: UICollectionViewCell {
         movieImage.frame = CGRect(x: 5, y: 0, width: contentView.frame.size.width/3.5, height: contentView.frame.size.width-20)
     }
     public func configure(action: Movie){
+        updateUI(title: action.title, overview: action.overview, poster: action.posterImage)
+    }
+    private var urlString: String = ""
+    private func updateUI(title: String?, overview: String?, poster: String?) {
+        
+        self.titleLabel.text = title
+        self.descriptionLabel.text = overview
+        
+        guard let posterString = poster else {return}
+        urlString = "https://image.tmdb.org/t/p/w300" + posterString
+        
+        guard let posterImageURL = URL(string: urlString) else {
+            self.movieImage.image = UIImage(named: "noImageAvailable")
+            return
+        }
+        
+        // Before we download the image we clear out the old one
+        self.movieImage.image = nil
+        
+        getImageDataFrom(url: posterImageURL)
         
     }
     override func prepareForReuse() {
