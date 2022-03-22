@@ -8,11 +8,12 @@
 import UIKit
 
 class ListMoviesViewController: UIViewController {
-
-     
+    
+    
+    var movies = [Movie]()
     private var viewModel = MovieViewModel()
     var fetchingMore = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
@@ -20,7 +21,8 @@ class ListMoviesViewController: UIViewController {
         setCollectionViewDellegates()
         collectionView.register(ListMovieCollectionViewCell.self, forCellWithReuseIdentifier: ListMovieCollectionViewCell.identifier)
         self.navigationItem.title = "Your Title"
-
+        print("DATA", movies)
+        
     }
     
     func setCollectionViewDellegates() {
@@ -30,7 +32,7 @@ class ListMoviesViewController: UIViewController {
             self?.collectionView.reloadData()
         }
     }
-
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -38,7 +40,7 @@ class ListMoviesViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
-
+    
     fileprivate func addConstraintsToCollectionView(){
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -49,16 +51,16 @@ class ListMoviesViewController: UIViewController {
 }
 
 extension ListMoviesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListMovieCollectionViewCell.identifier, for: indexPath) as! ListMovieCollectionViewCell
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
         cell.configure(action: movie)
         //cell.configure(action: movies[indexPath.row])
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return viewModel.numberOfRowsInSection(section: section)
@@ -66,15 +68,19 @@ extension ListMoviesViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //let item = movies[indexPath.row]
-        
         //print("You selected cell 123#\(item)!")
+        let movie = viewModel.cellForRowAt(indexPath: indexPath)
+        print(movie)
         let rootVc = MovieDetailsViewController()
+        rootVc.selectedTitle = movie.title!
+        rootVc.selectedImage = movie.posterImage!
+        rootVc.selectedOverview = movie.overview!
         let vc = UINavigationController(rootViewController: rootVc)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-   }
-
-
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width)-10
         let height: CGFloat = 130
